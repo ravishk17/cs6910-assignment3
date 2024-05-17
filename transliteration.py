@@ -197,7 +197,7 @@ class MyDataset(Dataset):
 
 def get_data(downloaded=False):
     # if(not downloaded):
-    # download_data()  # Download the data (assuming it has been implemented elsewhere)
+    download_data()  # Download the data (assuming it has been implemented elsewhere)
     
     # Read the train, test, and validation datasets from CSV files
     test_df = pd.read_csv("aksharantar_sampled/hin/hin_test.csv", header=None)
