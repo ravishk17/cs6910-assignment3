@@ -1,0 +1,56 @@
+{
+    "os": "Windows-11-10.0.22631-SP0",
+    "python": "3.12.0",
+    "heartbeatAt": "2024-05-17T17:47:14.340215",
+    "startedAt": "2024-05-17T17:47:11.645456",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "-e",
+        "1"
+    ],
+    "state": "running",
+    "program": "M:\\Practice\\Semester-2\\Deep Learning\\Assignments\\Assignment3\\train.py",
+    "codePathLocal": "train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "https://github.com/ravishk17/cs6910-assignment3.git",
+        "commit": "3ecd6d6a32b4ae5d0a42c2cbd21e7ed0ce672d33"
+    },
+    "email": "ravish.kr28@gmail.com",
+    "root": "M:/Practice/Semester-2/Deep Learning/Assignments/Assignment3",
+    "host": "Ravish",
+    "username": "ravis",
+    "executable": "C:\\Users\\ravis\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "cpu_count": 24,
+    "cpu_count_logical": 32,
+    "cpu_freq": {
+        "current": 1466.0,
+        "min": 0.0,
+        "max": 2200.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1466.0,
+            "min": 0.0,
+            "max": 2200.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 107.59081649780273,
+            "used": 44.6201171875
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+            "memory_total": 8585740288
+        }
+    ],
+    "memory": {
+        "total": 15.726432800292969
+    }
+}

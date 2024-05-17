@@ -1,0 +1,52 @@
+{
+    "os": "Windows-11-10.0.22631-SP0",
+    "python": "3.12.0",
+    "heartbeatAt": "2024-05-17T17:44:02.676592",
+    "startedAt": "2024-05-17T17:43:59.306954",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "transliteration.ipynb",
+    "codePathLocal": "transliteration.ipynb",
+    "root": "M:/Practice/Semester-2/Deep Learning/Assignments/Assignment3",
+    "git": {
+        "remote": "https://github.com/ravishk17/cs6910-assignment3.git",
+        "commit": "3ecd6d6a32b4ae5d0a42c2cbd21e7ed0ce672d33"
+    },
+    "email": "ravish.kr28@gmail.com",
+    "host": "Ravish",
+    "username": "ravis",
+    "executable": "C:\\Users\\ravis\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "cpu_count": 24,
+    "cpu_count_logical": 32,
+    "cpu_freq": {
+        "current": 2200.0,
+        "min": 0.0,
+        "max": 2200.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2200.0,
+            "min": 0.0,
+            "max": 2200.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 107.59081649780273,
+            "used": 44.61964416503906
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+            "memory_total": 8585740288
+        }
+    ],
+    "memory": {
+        "total": 15.726432800292969
+    }
+}

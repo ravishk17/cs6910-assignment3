@@ -1,0 +1,33 @@
+2024-05-17 23:13:59,320 INFO    Thread-12 (_run_job):30464 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-05-17 23:13:59,320 INFO    Thread-12 (_run_job):30464 [wandb_setup.py:_flush():76] Configure stats pid to 30464
+2024-05-17 23:13:59,320 INFO    Thread-12 (_run_job):30464 [wandb_setup.py:_flush():76] Loading settings from C:\Users\ravis\.config\wandb\settings
+2024-05-17 23:13:59,320 INFO    Thread-12 (_run_job):30464 [wandb_setup.py:_flush():76] Loading settings from M:\Practice\Semester-2\Deep Learning\Assignments\Assignment3\wandb\settings
+2024-05-17 23:13:59,320 INFO    Thread-12 (_run_job):30464 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'Assignment3', 'entity': 'cs23m055', 'root_dir': 'M:\\Practice\\Semester-2\\Deep Learning\\Assignments\\Assignment3', 'sweep_id': 'jw5363id', 'run_id': '5d368yqy', 'sweep_param_path': 'M:\\Practice\\Semester-2\\Deep Learning\\Assignments\\Assignment3\\wandb\\sweep-jw5363id\\config-5d368yqy.yaml'}
+2024-05-17 23:13:59,321 INFO    Thread-12 (_run_job):30464 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-05-17 23:13:59,321 INFO    Thread-12 (_run_job):30464 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program': '<python with no main file>'}
+2024-05-17 23:13:59,321 INFO    Thread-12 (_run_job):30464 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-05-17 23:13:59,321 INFO    Thread-12 (_run_job):30464 [wandb_init.py:_log_setup():521] Logging user logs to M:\Practice\Semester-2\Deep Learning\Assignments\Assignment3\wandb\run-20240517_231359-5d368yqy\logs\debug.log
+2024-05-17 23:13:59,321 INFO    Thread-12 (_run_job):30464 [wandb_init.py:_log_setup():522] Logging internal logs to M:\Practice\Semester-2\Deep Learning\Assignments\Assignment3\wandb\run-20240517_231359-5d368yqy\logs\debug-internal.log
+2024-05-17 23:13:59,322 INFO    Thread-12 (_run_job):30464 [wandb_init.py:_jupyter_setup():467] configuring jupyter hooks <wandb.sdk.wandb_init._WandbInit object at 0x00000261805E69F0>
+2024-05-17 23:13:59,323 INFO    Thread-12 (_run_job):30464 [wandb_init.py:init():561] calling init triggers
+2024-05-17 23:13:59,323 INFO    Thread-12 (_run_job):30464 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attention': 'Yes', 'batchsize': 64, 'bi_directional': 'Yes', 'cell_type': 'LSTM', 'decoder_layers': 3, 'dropout': 0.3, 'embedding_size': 1024, 'encoder_layers': 4, 'epochs': 1, 'hidden_size': 1024}
+config: {}
+2024-05-17 23:13:59,323 INFO    Thread-12 (_run_job):30464 [wandb_init.py:init():611] starting backend
+2024-05-17 23:13:59,324 INFO    Thread-12 (_run_job):30464 [wandb_init.py:init():615] setting up manager
+2024-05-17 23:13:59,332 INFO    Thread-12 (_run_job):30464 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=spawn, using: spawn
+2024-05-17 23:13:59,336 INFO    Thread-12 (_run_job):30464 [wandb_init.py:init():623] backend started and connected
+2024-05-17 23:13:59,355 INFO    Thread-12 (_run_job):30464 [wandb_run.py:_config_callback():1347] config_cb None None {'attention': 'Yes', 'batchsize': 64, 'bi_directional': 'Yes', 'cell_type': 'LSTM', 'decoder_layers': 3, 'dropout': 0.3, 'embedding_size': 1024, 'encoder_layers': 4, 'epochs': 1, 'hidden_size': 1024}
+2024-05-17 23:13:59,356 INFO    Thread-12 (_run_job):30464 [wandb_run.py:_label_probe_notebook():1299] probe notebook
+2024-05-17 23:13:59,357 INFO    Thread-12 (_run_job):30464 [wandb_run.py:_label_probe_notebook():1309] Unable to probe notebook: 'charmap' codec can't decode byte 0x81 in position 57609: character maps to <undefined>
+2024-05-17 23:13:59,357 INFO    Thread-12 (_run_job):30464 [wandb_init.py:init():715] updated telemetry
+2024-05-17 23:13:59,442 INFO    Thread-12 (_run_job):30464 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-05-17 23:14:00,357 INFO    Thread-12 (_run_job):30464 [wandb_run.py:_on_init():2357] communicating current version
+2024-05-17 23:14:00,709 INFO    Thread-12 (_run_job):30464 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.0 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-05-17 23:14:00,720 INFO    Thread-12 (_run_job):30464 [wandb_init.py:init():799] starting run threads in backend
+2024-05-17 23:14:03,248 INFO    Thread-12 (_run_job):30464 [wandb_run.py:_console_start():2335] atexit reg
+2024-05-17 23:14:03,248 INFO    Thread-12 (_run_job):30464 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-05-17 23:14:03,248 INFO    Thread-12 (_run_job):30464 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-05-17 23:14:03,248 INFO    Thread-12 (_run_job):30464 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-05-17 23:14:03,249 INFO    Thread-12 (_run_job):30464 [wandb_init.py:init():842] run started, returning control to user process
+2024-05-17 23:18:59,741 WARNING MsgRouterThr:30464 [router.py:message_loop():77] message_loop has been closed

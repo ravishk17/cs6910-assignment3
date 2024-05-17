@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "M:\Practice\Semester-2\Deep Learning\Assignments\Assignment3\train.py", line 51, in <module>
+    wandb_run_configuration(train_dataset,val_dataset,test_dataset,train_y,val_y,test_x,test_y,input_len,target_len,idx_to_eng, idx_to_hin,args.epochs,args.encoder_layers,args.decoder_layers,args.batchsize,args.embedding_size,args.hidden_size,args.bi_directional,args.dropout,args.cell_type,args.attention)
+  File "M:\Practice\Semester-2\Deep Learning\Assignments\Assignment3\transliteration.py", line 980, in wandb_run_configuration
+    epoch_train_loss,epoch_val_loss,epoch_val_acc,encoder,decoder,encoder_layers,decoder_layers=train_iter(train_dataloader,val_dataloader,val_y,input_len,hidden_size,cell_type,bi_directional,dropout,attention,target_len,epochs,batchsize,embedding_size,encoder_layers,decoder_layers)
+                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "M:\Practice\Semester-2\Deep Learning\Assignments\Assignment3\transliteration.py", line 668, in train_iter
+    loss, encoder, decoder = train(input_data, encoder, decoder, loss_fun, hidden_size, bi_directional, cell_type, attention, encoder_optimizer, decoder_optimizer, encoder_layers, decoder_layers, batch_size)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "M:\Practice\Semester-2\Deep Learning\Assignments\Assignment3\transliteration.py", line 556, in train
+    loss.backward()
+  File "C:\Users\ravis\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "C:\Users\ravis\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\autograd\__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt
