@@ -197,7 +197,7 @@ class MyDataset(Dataset):
 
 def get_data(downloaded=False):
     # if(not downloaded):
-    # download_data()  # Download the data (assuming it has been implemented elsewhere)
+    download_data()  # Download the data (assuming it has been implemented elsewhere)
     
     # Read the train, test, and validation datasets from CSV files
     test_df = pd.read_csv("aksharantar_sampled/hin/hin_test.csv", header=None)
@@ -966,7 +966,7 @@ def plot_attention(test_predictions,attn_matrix,test_x, idx_to_eng, idx_to_hin):
 # In[23]:
 
 
-def wandb_run_configuration(train_dataset,val_dataset,test_dataset,train_y,val_y,test_x,test_y,input_len,target_len,idx_to_eng, idx_to_hin,epochs,encoder_layers,decoder_layers,batchsize,embedding_size,hidden_size,bi_directional,dropout,cell_type,attention):
+def wandb_run_configuration(train_dataset,val_dataset,test_dataset,train_y,val_y,test_x,test_y,input_len,target_len, epochs,encoder_layers,decoder_layers,batchsize,embedding_size,hidden_size,bi_directional,dropout,cell_type,attention):
     
     wandb.login(key = "67fcf10073b0d1bfeee44a1e4bd6f3eb5b674f8e")
     wandb.init(project="Assignment3")
@@ -976,7 +976,7 @@ def wandb_run_configuration(train_dataset,val_dataset,test_dataset,train_y,val_y
     train_dataloader=DataLoader(train_dataset,batch_size=batchsize)
     test_dataloader=DataLoader(test_dataset,batch_size=batchsize)
     val_dataloader=DataLoader(val_dataset,batch_size=batchsize)
-
+    
     epoch_train_loss,epoch_val_loss,epoch_val_acc,encoder,decoder,encoder_layers,decoder_layers=train_iter(train_dataloader,val_dataloader,val_y,input_len,hidden_size,cell_type,bi_directional,dropout,attention,target_len,epochs,batchsize,embedding_size,encoder_layers,decoder_layers)
 
     for i in range(epochs):

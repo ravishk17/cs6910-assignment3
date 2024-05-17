@@ -176,7 +176,7 @@ def pre_process(data, eng_to_idx, hin_to_idx):
 
 # ## LOADING OUR CUSTOM DATASET TO DATALOADER
 
-# In[12]:
+# In[25]:
 
 
 class MyDataset(Dataset):
@@ -197,7 +197,7 @@ class MyDataset(Dataset):
 
 def get_data(downloaded=False):
     # if(not downloaded):
-    download_data()  # Download the data (assuming it has been implemented elsewhere)
+    # download_data()  # Download the data (assuming it has been implemented elsewhere)
     
     # Read the train, test, and validation datasets from CSV files
     test_df = pd.read_csv("aksharantar_sampled/hin/hin_test.csv", header=None)
@@ -904,6 +904,82 @@ def wandb_run_sweeps(train_dataset,val_dataset,test_dataset,train_y,val_y,test_y
     wandb.agent(sweep_id,function=train_rnn,count=1)
 
 
+# In[27]:
+
+
+def wandb_run_configuration(train_dataset,val_dataset,test_dataset,train_y,val_y,test_x,test_y,input_len,target_len,epochs,encoder_layers,decoder_layers,batchsize,embedding_size,hidden_size,bi_directional,dropout,cell_type,attention):
+    
+    wandb.login(key = "67fcf10073b0d1bfeee44a1e4bd6f3eb5b674f8e")
+    wandb.init(project="Assignment3")
+    name='_CT_'+str(cell_type)+"_BS_"+str(batchsize)+"_EPOCH_"+str(epochs)+"_ES_"+str(embedding_size)+"_HS_"+str(hidden_size)
+
+
+    train_dataloader=DataLoader(train_dataset,batch_size=batchsize)
+    test_dataloader=DataLoader(test_dataset,batch_size=batchsize)
+    val_dataloader=DataLoader(val_dataset,batch_size=batchsize)
+    
+    epoch_train_loss,epoch_val_loss,epoch_val_acc,encoder,decoder,encoder_layers,decoder_layers=train_iter(train_dataloader,val_dataloader,val_y,input_len,hidden_size,cell_type,bi_directional,dropout,attention,target_len,epochs,batchsize,embedding_size,encoder_layers,decoder_layers)
+
+    for i in range(epochs):
+        wandb.log({"loss":epoch_train_loss[i]})
+        wandb.log({"val_loss":epoch_val_loss[i]})
+        wandb.log({"val_acc":epoch_val_acc[i]})
+        wandb.log({"epoch": (i+1)})
+    wandb.log({"validation_accuracy":epoch_val_acc[-1]})    
+
+    train_predictions,_,_=eval(train_dataloader,encoder,decoder,encoder_layers,decoder_layers,batchsize,hidden_size,bi_directional,cell_type,attention)
+
+    train_accuracy=accuracy(train_predictions,train_y)
+    wandb.log({"train_accuracy":train_accuracy})
+
+    test_predictions,_,_=eval(test_dataloader,encoder,decoder,encoder_layers,decoder_layers,batchsize,hidden_size,bi_directional,cell_type,attention)
+    test_accuracy=accuracy(test_predictions,test_y)
+    wandb.log({"test_accuracy":test_accuracy})
+    wandb.log({"acc":epoch_val_acc[-1]})
+    
+    
+    # test_dataset_attn=MyDataset(test_x[:batchsize],test_y[:batchsize])
+    # test_dataloader_attn_for_matrix=DataLoader(test_dataset_attn,batch_size=batchsize)
+    # test_predictions,_,attn_matrix=eval(test_dataloader_attn_for_matrix,encoder,decoder,encoder_layers,decoder_layers,batchsize,hidden_size,bi_directional,cell_type,attention,True)
+
+    
+    # fig=plot_attention(test_predictions,attn_matrix,test_x, idx_to_eng, idx_to_hin)
+    # fig.savefig("ex.png")
+    # temp = plt.imread("ex.png")
+    # plt.show()
+    # image = wandb.Image(temp)
+    # wandb.log({"attention heatmaps":image})
+    wandb.run.name = name
+    wandb.run.save()
+    wandb.run.finish()
+
+
+# In[28]:
+
+
+def main():
+    train_df,test_df,val_df,eng_to_idx,hin_to_idx,idx_to_eng,idx_to_hin,input_len,target_len=get_data()
+
+    val_x,val_y = pre_process(val_df,eng_to_idx,hin_to_idx)
+    test_x,test_y = pre_process(test_df,eng_to_idx,hin_to_idx)
+    train_x,train_y = pre_process(train_df,eng_to_idx,hin_to_idx)
+    
+    
+
+    train_dataset=MyDataset(train_x,train_y)
+    test_dataset=MyDataset(test_x,test_y)
+    val_dataset=MyDataset(val_x,val_y)
+    
+    # wandb_run_configuration(train_dataset,val_dataset,test_dataset,train_y,val_y,test_x,test_y,input_len,target_len,idx_to_eng, idx_to_hin,25,4,3,128,512,1024,"No",0.3,"LSTM","Yes")
+    # wandb_run_sweeps(train_dataset,val_dataset,test_dataset,train_y,val_y,test_y,input_len,target_len)
+    wandb_run_configuration(train_dataset,val_dataset,test_dataset,train_y,val_y,test_x,test_y,input_len,target_len, 1,4,3,128,512,1024,"No",0.3,"LSTM","Yes")
+
+
+if __name__=="__main__":
+    
+    main()
+
+
 # In[22]:
 
 
@@ -961,81 +1037,6 @@ def plot_attention(test_predictions,attn_matrix,test_x, idx_to_eng, idx_to_hin):
         axes[i].xaxis.tick_top()
     
     return fig
-
-
-# In[23]:
-
-
-def wandb_run_configuration(train_dataset,val_dataset,test_dataset,train_y,val_y,test_x,test_y,input_len,target_len,idx_to_eng, idx_to_hin,epochs,encoder_layers,decoder_layers,batchsize,embedding_size,hidden_size,bi_directional,dropout,cell_type,attention):
-    
-    wandb.login(key = "67fcf10073b0d1bfeee44a1e4bd6f3eb5b674f8e")
-    wandb.init(project="Assignment3")
-    name='_CT_'+str(cell_type)+"_BS_"+str(batchsize)+"_EPOCH_"+str(epochs)+"_ES_"+str(embedding_size)+"_HS_"+str(hidden_size)
-
-
-    train_dataloader=DataLoader(train_dataset,batch_size=batchsize)
-    test_dataloader=DataLoader(test_dataset,batch_size=batchsize)
-    val_dataloader=DataLoader(val_dataset,batch_size=batchsize)
-    
-    epoch_train_loss,epoch_val_loss,epoch_val_acc,encoder,decoder,encoder_layers,decoder_layers=train_iter(train_dataloader,val_dataloader,val_y,input_len,hidden_size,cell_type,bi_directional,dropout,attention,target_len,epochs,batchsize,embedding_size,encoder_layers,decoder_layers)
-
-    for i in range(epochs):
-        wandb.log({"loss":epoch_train_loss[i]})
-        wandb.log({"val_loss":epoch_val_loss[i]})
-        wandb.log({"val_acc":epoch_val_acc[i]})
-        wandb.log({"epoch": (i+1)})
-    wandb.log({"validation_accuracy":epoch_val_acc[-1]})    
-
-    train_predictions,_,_=eval(train_dataloader,encoder,decoder,encoder_layers,decoder_layers,batchsize,hidden_size,bi_directional,cell_type,attention)
-
-    train_accuracy=accuracy(train_predictions,train_y)
-    wandb.log({"train_accuracy":train_accuracy})
-
-    test_predictions,_,_=eval(test_dataloader,encoder,decoder,encoder_layers,decoder_layers,batchsize,hidden_size,bi_directional,cell_type,attention)
-    test_accuracy=accuracy(test_predictions,test_y)
-    wandb.log({"test_accuracy":test_accuracy})
-    wandb.log({"acc":epoch_val_acc[-1]})
-    
-    
-    # test_dataset_attn=MyDataset(test_x[:batchsize],test_y[:batchsize])
-    # test_dataloader_attn_for_matrix=DataLoader(test_dataset_attn,batch_size=batchsize)
-    # test_predictions,_,attn_matrix=eval(test_dataloader_attn_for_matrix,encoder,decoder,encoder_layers,decoder_layers,batchsize,hidden_size,bi_directional,cell_type,attention,True)
-
-    
-    # fig=plot_attention(test_predictions,attn_matrix,test_x, idx_to_eng, idx_to_hin)
-    # fig.savefig("ex.png")
-    # temp = plt.imread("ex.png")
-    # plt.show()
-    # image = wandb.Image(temp)
-    # wandb.log({"attention heatmaps":image})
-    wandb.run.name = name
-    wandb.run.save()
-    wandb.run.finish()
-
-
-# In[24]:
-
-
-def main():
-    train_df,test_df,val_df,eng_to_idx,hin_to_idx,idx_to_eng,idx_to_hin,input_len,target_len=get_data()
-
-    val_x,val_y = pre_process(val_df,eng_to_idx,hin_to_idx)
-    test_x,test_y = pre_process(test_df,eng_to_idx,hin_to_idx)
-    train_x,train_y = pre_process(train_df,eng_to_idx,hin_to_idx)
-    
-    
-
-    train_dataset=MyDataset(train_x,train_y)
-    test_dataset=MyDataset(test_x,test_y)
-    val_dataset=MyDataset(val_x,val_y)
-    
-    # wandb_run_configuration(train_dataset,val_dataset,test_dataset,train_y,val_y,test_x,test_y,input_len,target_len,idx_to_eng, idx_to_hin,25,4,3,128,512,1024,"No",0.3,"LSTM","Yes")
-    wandb_run_sweeps(train_dataset,val_dataset,test_dataset,train_y,val_y,test_y,input_len,target_len)
-
-
-if __name__=="__main__":
-    
-    main()
 
 
 # In[ ]:

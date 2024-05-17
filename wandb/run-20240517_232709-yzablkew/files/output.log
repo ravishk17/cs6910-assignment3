@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "M:\Practice\Semester-2\Deep Learning\Assignments\Assignment3\train.py", line 51, in <module>
+    wandb_run_configuration(train_dataset,val_dataset,test_dataset,train_y,val_y,test_x,test_y,input_len,target_len,idx_to_eng, idx_to_hin,args.epochs,args.encoder_layers,args.decoder_layers,args.batchsize,args.embedding_size,args.hidden_size,args.bi_directional,args.dropout,args.cell_type,args.attention)
+  File "M:\Practice\Semester-2\Deep Learning\Assignments\Assignment3\transliteration.py", line 980, in wandb_run_configuration
+    epoch_train_loss,epoch_val_loss,epoch_val_acc,encoder,decoder,encoder_layers,decoder_layers=train_iter(train_dataloader,val_dataloader,val_y,input_len,hidden_size,cell_type,bi_directional,dropout,attention,target_len,epochs,batchsize,embedding_size,encoder_layers,decoder_layers)
+                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "M:\Practice\Semester-2\Deep Learning\Assignments\Assignment3\transliteration.py", line 668, in train_iter
+    loss, encoder, decoder = train(input_data, encoder, decoder, loss_fun, hidden_size, bi_directional, cell_type, attention, encoder_optimizer, decoder_optimizer, encoder_layers, decoder_layers, batch_size)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "M:\Practice\Semester-2\Deep Learning\Assignments\Assignment3\transliteration.py", line 538, in train
+    decoder_output, decoder_hidden, decoder_state, attn_weights = decoder(decoder_input, decoder_hidden, encoder_output, len(train_x), decoder_state)
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ravis\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\nn\modules\module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ravis\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\nn\modules\module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "M:\Practice\Semester-2\Deep Learning\Assignments\Assignment3\transliteration.py", line 442, in forward
+    c=torch.zeros(self.batch_size,1,self.hidden_size).to(device)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
